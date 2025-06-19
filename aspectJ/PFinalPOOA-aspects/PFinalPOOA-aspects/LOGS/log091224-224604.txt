@@ -1,0 +1,14 @@
+SESSION DU 091224-224604
+
+Operation sur le compte numero : 101 de type : Credit
+Montant: 2000.0
+
+Operation sur le compte numero : 102 de type : Credit
+Montant: 1500.0
+
+Operation sur le compte numero : 101 de type : Debit
+Montant: 500.0
+
+Operation sur le compte numero : 101 de type : Virement
+Montant: 700.0
+

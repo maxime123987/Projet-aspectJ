@@ -1,0 +1,8 @@
+SESSION DU 091224-231259
+
+Operation sur le compte numero : 101, de type : Debit
+Montant: 500.0
+
+Operation sur le compte numero : 101, de type : Virement
+Montant: 700.0
+
