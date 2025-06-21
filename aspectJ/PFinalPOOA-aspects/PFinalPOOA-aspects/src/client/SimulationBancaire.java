@@ -5,15 +5,17 @@ public class SimulationBancaire {
         // Étape 1 : Créer les clients
         Client client1 = new Client(1, "Gold");
         Client client2 = new Client(2, "Silver");
+        Client client3 = new Client(3, "Canadien");
 
         // Étape 2 : Créer des comptes pour chaque client
         Compte compteGold = new Compte(client1, 101);
         Compte compteSilver = new Compte(client2, 102);
+        Compte compteCanadien = new Compte(client3, 103); 
 
         // Ajouter les comptes aux clients
         client1.addCompte(compteGold);
         client2.addCompte(compteSilver);
-
+        client3.addCompte(compteCanadien);
         // Étape 3 : Effectuer des opérations
         System.out.println("\n=== Opérations Bancaires ===\n");
 
@@ -42,6 +44,13 @@ public class SimulationBancaire {
         virement.executer(700); // Appel à la méthode executer du virement
         System.out.println(compteGold);
         System.out.println(compteSilver);
+
+        // Virement international
+        System.out.println("Effectuer un virement international de 300 euros du compte Gold vers le compte Canadien");
+        VirementInternational virementInternational = new VirementInternational(compteGold, compteCanadien, 300, "CAD");
+        virementInternational.executer(300); // Appel à la méthode executer du virement international
+        System.out.println(compteGold);
+        System.out.println(compteCanadien);
 
         // Étape 4 : Ajouter un prêt pour le client Gold
         System.out.println("\n=== Gestion des Prêts ===\n");
