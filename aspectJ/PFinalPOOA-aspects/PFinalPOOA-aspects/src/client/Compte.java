@@ -37,18 +37,5 @@ public class Compte {
         return ("le compte numero : " + numero + " a pour solde : " + solde + " le nom du client est " + client.getNom());
     }
 
-    public static void main(String[] args) {
-        Client c1 = new Client(1, "Gold");
-        Client c2 = new Client(2,"silver");
-        Compte gold = new Compte(c1, 1);
-        Compte silver = new Compte(c2, 2);
-        System.out.println(gold);
-        gold.credit(1000);
-        System.out.println(silver);
-        System.out.println(gold);
-        gold.debit(1500);
-        System.out.println(gold);
-
-    }
 
 }
