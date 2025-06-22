@@ -1,10 +1,13 @@
-SESSION DU 101224-100442
+SESSION DU 220625-094554
 
 Operation sur le compte numero : 101, de type : Credit
-Montant: 2000.0
+Montant: 5000.0
 
 Operation sur le compte numero : 102, de type : Credit
-Montant: 1500.0
+Montant: 3800.0
+
+Operation sur le compte numero : 201, de type : Credit
+Montant: 2000.0
 
 Operation sur le compte numero : 101, de type : Debit
 Montant: 500.0
@@ -12,6 +15,6 @@ Montant: 500.0
 Operation sur le compte numero : 101, de type : Virement
 Montant: 700.0
 
-
-aaa
+Operation sur le compte numero : 101, de type : VirementInternational
+Montant: 300.0
 
