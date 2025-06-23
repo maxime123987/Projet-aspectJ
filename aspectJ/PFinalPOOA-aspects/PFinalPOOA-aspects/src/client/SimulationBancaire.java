@@ -67,6 +67,7 @@ public class SimulationBancaire {
 
 
         // Afficher les informations finales des clients
+        System.out.println("\n=== Informations finales des clients ===\n");
         System.out.println("\nClient étranger : " + client1 + " (Devise : " + client1.getDevise() + ")");
         for (Compte compte : client1.getComptes()) {
             System.out.println("  - " + compte.toString());
