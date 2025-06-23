@@ -2,63 +2,87 @@ package client;
 
 public class SimulationBancaire {
     public static void main(String[] args) {
-        // Étape 1 : Créer les clients
-        Client client1 = new Client(1, "Gold");
-        Client client2 = new Client(2, "Silver");
+        // Création des clients
+        Client client1 = new Client(1, "Axel");
+        Client client2 = new Client(2, "Philippe");
+        Client client3 = new Client(3, "Canadien", "CAD");
 
-        // Étape 2 : Créer des comptes pour chaque client
-        Compte compteGold = new Compte(client1, 101);
-        Compte compteSilver = new Compte(client2, 102);
+        // Création des comptes pour chaque client
+        Compte compteAxel = new Compte(client1, 101);
+        Compte comptePhilippe = new Compte(client2, 102);
+        Compte compteCanadien = new Compte(client3, 103);
 
         // Ajouter les comptes aux clients
-        client1.addCompte(compteGold);
-        client2.addCompte(compteSilver);
+        client1.addCompte(compteAxel);
+        client2.addCompte(comptePhilippe);
+        client3.addCompte(compteCanadien);
 
-        // Étape 3 : Effectuer des opérations
+        // Création d'un compte épargne
+        CompteEpargne compteEpargne = new CompteEpargne(client1, 201, 2.5f); // 2.5% d'intérêt
+        client1.addCompte(compteEpargne);
+
+
+        // Effectuer des opérations
         System.out.println("\n=== Opérations Bancaires ===\n");
 
         // Crédits
-        System.out.println("Créditer le compte Gold de 2000 euros");
+        System.out.println("Créditer le compte d'Axel de 5000 euros");
         Credit credit = new Credit();
-        credit.setCompte(compteGold);
-        credit.executer(2000);
-        System.out.println(compteGold);
+        credit.setCompte(compteAxel);
+        credit.executer(5000);
+        System.out.println(compteAxel);
 
-        System.out.println("Créditer le compte Silver de 1500 euros");
-        credit.setCompte(compteSilver);
-        credit.executer(1500);
-        System.out.println(compteSilver);
+        System.out.println("Créditer le compte de Philippe de 3800 euros");
+        credit.setCompte(comptePhilippe);
+        credit.executer(3800);
+        System.out.println(comptePhilippe);
+
+        System.out.println("Créditer 2000 euros sur le compte épargne");
+        credit.setCompte(compteEpargne);
+        credit.executer(2000);
+        System.out.println(compteEpargne);
+        System.out.println("Solde prévisionnel avec intérêts : " + compteEpargne.calculerSoldeAvecInterets() + " euros");
+
 
         // Débits
-        System.out.println("Débiter le compte Gold de 500 euros");
+        System.out.println("Débiter le compte d'Axel de 500 euros");
         Debit debit = new Debit();
-        debit.setCompte(compteGold);
+        debit.setCompte(compteAxel);
         debit.executer(500);
-        System.out.println(compteGold);
+        System.out.println(compteAxel);
 
         // Virement
-        System.out.println("Effectuer un virement de 700 euros du compte Gold vers le compte Silver");
-        Virement virement = new Virement(compteGold, compteSilver, 700);
+        System.out.println("Effectuer un virement de 900 euros du compte d'Axel vers le compte de Philippe");
+        Virement virement = new Virement(compteAxel, comptePhilippe, 900);
         virement.executer(700); // Appel à la méthode executer du virement
-        System.out.println(compteGold);
-        System.out.println(compteSilver);
+        System.out.println(compteAxel);
+        System.out.println(comptePhilippe);
 
-        // Étape 4 : Ajouter un prêt pour le client Gold
-        System.out.println("\n=== Gestion des Prêts ===\n");
-        Pret pretGold = new Pret(client1, 10000, 0.04f, 36);
-        System.out.println("Informations sur le prêt :");
-        System.out.println(pretGold);
+        // Virement international
+        System.out.println("Effectuer un virement international de 300 euros du compte d'Axel vers le compte Canadien");
+        VirementInternational virementInternational = new VirementInternational(compteAxel, compteCanadien, 300, "CAD");
+        virementInternational.executer(300); // Appel à la méthode executer du virement international
+        System.out.println(compteAxel);
+        System.out.println(compteCanadien);
 
-        System.out.println("Montant total à rembourser : " + String.format("%.2f", pretGold.calculerMontantRemboursement()));
-        System.out.println("Montant à rembourser par mois : " + String.format("%.2f", pretGold.montantParMois()));
 
-        // Étape 5 : Afficher les informations finales des clients
-        System.out.println("\n=== Informations finales ===\n");
-        System.out.println("Client 1 : " + client1);
-        System.out.println("Comptes de Client 1 : " + client1.getComptes());
-        System.out.println("Prêts de Client 1 : " + client1.getPrets());
+        // Afficher les informations finales des clients
+        System.out.println("\n=== Informations finales des clients ===\n");
+        System.out.println("\nClient étranger : " + client1 + " (Devise : " + client1.getDevise() + ")");
+        for (Compte compte : client1.getComptes()) {
+            System.out.println("  - " + compte.toString());
+        }
 
-        System.out.println("Client 2 : " + client2);
-        System.out.println("Comptes de Client 2 : " + client2.getComptes());
+        System.out.println("\nClient étranger : " + client2 + " (Devise : " + client2.getDevise() + ")");
+        System.out.println("Comptes de Client 2 :");
+        for (Compte compte : client2.getComptes()) {
+            System.out.println("  - " + compte.toString());
+        }
+
+        System.out.println("\nClient étranger : " + client3 + " (Devise : " + client3.getDevise() + ")");
+        System.out.println("Comptes de Client étranger :");
+        for (Compte compte : client3.getComptes()) {
+            System.out.println("  - " + compte.toString());
+        }
     }
 }

@@ -7,26 +7,29 @@ public class Client {
     private long numero;
     private String nom;
     private ArrayList<Compte> comptes;
-    private ArrayList<Pret> prets;
+    private String devise = "EUR"; // par défaut
+
 
     public Client(long numero, String nom) {
-        this.prets = new ArrayList<>();
-        this.comptes = new ArrayList<Compte>();
+        this(numero, nom, "EUR");
+    }
+
+    public Client(long numero, String nom, String devise) {
+        this.comptes = new ArrayList<>();
         this.numero = numero;
         this.nom = nom;
+        this.devise = devise;
     }
+
 
     public long getNumero() {
         return numero;
     }
 
-    public void addPret(Pret pret) {
-        this.prets.add(pret);
+    public String getDevise() {
+        return devise;
     }
 
-    public ArrayList<Pret> getPrets() {
-        return prets;
-    }
 
     public String getNom() {
         return nom;
@@ -47,14 +50,5 @@ public class Client {
     @Override
     public String toString() {
         return ("le client qui a pour numero " + numero + " a pour nom " + nom);
-    }
-
-    public static void main(String[] args) {
-        Client c1 = new Client(1, "Gold");
-        Client c2 = new Client(2, "Silver");
-        System.out.println(c1);
-        System.out.println(c2);
-        c2.setNom("Platinium");
-        System.out.println(c2);
     }
 }
